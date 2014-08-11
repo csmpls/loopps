@@ -60,9 +60,9 @@ function ThreeSixtyPlayer() {
     playNext: false,   // stop after one sound, or play through list until end
     autoPlay: false,   // start playing the first sound right away
     allowMultiple: true,  // let many sounds play at once (false = only one sound playing at a time)
-    loadRingColor: '#ddd', // how much has loaded
+    loadRingColor: '#575758', // how much has loaded
     playRingColor: '#f7f7f8', // how much has played
-    backgroundRingColor: '#ddd', // color shown underneath load + play ("not yet loaded" color)
+    backgroundRingColor: '#fff', // color shown underneath load + play ("not yet loaded" color)
 
     // optional segment/annotation (metadata) stuff..
     segmentRingColor: 'rgba(255,255,255,0.33)', // metadata/annotation (segment) colors
@@ -72,14 +72,14 @@ function ThreeSixtyPlayer() {
 
     circleDiameter: null, // set dynamically according to values from CSS
     circleRadius: null,
-    animDuration: 1000,
+    animDuration: 700,
     animTransition: window.Animator.tx.fade, // http://www.berniecode.com/writing/animator.html
     showHMSTime: false, // hours:minutes:seconds vs. seconds-only
     scaleFont: true,  // also set the font size (if possible) while animating the circle
 
     // optional: spectrum or EQ graph in canvas (not supported in IE <9, too slow via ExCanvas)
     useWaveformData: false,
-    waveformDataColor: 'rgba(12,12,255,0.33)',
+    waveformDataColor: 'rgba(12,12,150,0.33)',
     waveformDataDownsample: 3, // use only one in X (of a set of 256 values) - 1 means all 256
     waveformDataOutside: false,
     waveformDataConstrain: false, // if true, +ve values only - keep within inside circle
@@ -87,14 +87,14 @@ function ThreeSixtyPlayer() {
 
     // "spectrum frequency" option
     useEQData: false,
-    eqDataColor: '#339933',
+    eqDataColor: '#eee',
     eqDataDownsample: 4, // use only one in X (of 256 values)
     eqDataOutside: true,
     eqDataLineRatio: 0.54,
 
     // enable "amplifier" (canvas pulses like a speaker) effect
     usePeakData: false,
-    peakDataColor: '#ff33ff',
+    peakDataColor: '#ff0000',
     peakDataOutside: true,
     peakDataLineRatio: 0.5,
 
@@ -718,7 +718,7 @@ function ThreeSixtyPlayer() {
         deltaY = y-oSound._360data.canvasMidXY[1],
         angle = Math.floor(fullCircle-(self.rad2deg(Math.atan2(deltaX,deltaY))+180));
 
-    oSound.setPosition(oSound.durationEstimate*(angle/fullCircle));
+    //oSound.setPosition(oSound.durationEstimate*(angle/fullCircle));
     self.stopEvent(e);
     return false;
 
