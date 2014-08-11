@@ -89,7 +89,7 @@ function SoundManager(smURL, smID) {
     'autoLoad': false,        // enable automatic loading (otherwise .load() will be called on demand with .play(), the latter being nicer on bandwidth - if you want to .load yourself, you also can)
     'autoPlay': false,        // enable playing of file as soon as possible (much faster if "stream" is true)
     'from': null,             // position to start playback within a sound (msec), default = beginning
-    'loops': 999,               // how many times to repeat the sound (position will wrap around to 0, setPosition() will break out of loop when >0)
+    'loops': 1,               // how many times to repeat the sound (position will wrap around to 0, setPosition() will break out of loop when >0)
     'onid3': null,            // callback function for "ID3 data is added/available"
     'onload': null,           // callback function for "load finished"
     'whileloading': null,     // callback function for "download progress update" (X of Y bytes received)

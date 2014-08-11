@@ -43,31 +43,18 @@
 
     <script type="text/javascript">
 
-    function loopSound(sound) {
-      window.setTimeout(function() {
-        sound.play({
-           onfinish:  function() {
-             loopSound(sound);
-           },
-        });
-      }, 1);  // window.setTimeout
-    }
-
-
     soundManager.setup({
       // path to directory containing SM2 SWF
       url: '../static/swf/',
+      useHighPerformance: true,
 
-      onready: function() {
+      defaultOptions:{
+        loops:999,
+        autoLoad:true
+      },
 
-        // setup the thing to be looped
-        // var sound = soundManager.createSound({
-        //   id:'loopTest',
-        //   url:'../static/music/there-are-no-paths.mp3',
-        //   autoLoad:true,
-        // }); loopSound(sound);
+      onready: function() {}
 
-      }
     });
 
 

@@ -60,9 +60,9 @@ function ThreeSixtyPlayer() {
     playNext: false,   // stop after one sound, or play through list until end
     autoPlay: false,   // start playing the first sound right away
     allowMultiple: true,  // let many sounds play at once (false = only one sound playing at a time)
-    loadRingColor: '#eee', // how much has loaded
+    loadRingColor: '#ddd', // how much has loaded
     playRingColor: '#f7f7f8', // how much has played
-    backgroundRingColor: '#eee', // color shown underneath load + play ("not yet loaded" color)
+    backgroundRingColor: '#ddd', // color shown underneath load + play ("not yet loaded" color)
 
     // optional segment/annotation (metadata) stuff..
     segmentRingColor: 'rgba(255,255,255,0.33)', // metadata/annotation (segment) colors
@@ -72,7 +72,7 @@ function ThreeSixtyPlayer() {
 
     circleDiameter: null, // set dynamically according to values from CSS
     circleRadius: null,
-    animDuration: 500,
+    animDuration: 1000,
     animTransition: window.Animator.tx.fade, // http://www.berniecode.com/writing/animator.html
     showHMSTime: false, // hours:minutes:seconds vs. seconds-only
     scaleFont: true,  // also set the font size (if possible) while animating the circle
@@ -93,7 +93,7 @@ function ThreeSixtyPlayer() {
     eqDataLineRatio: 0.54,
 
     // enable "amplifier" (canvas pulses like a speaker) effect
-    usePeakData: true,
+    usePeakData: false,
     peakDataColor: '#ff33ff',
     peakDataOutside: true,
     peakDataLineRatio: 0.5,
@@ -425,8 +425,11 @@ function ThreeSixtyPlayer() {
 
       // already exists
       if (thisSound === self.lastSound) {
-        // and was playing (or paused)
-        thisSound.togglePause();
+        // and was playing
+        if (thisSound.playState == 1)
+          self.stopSound(self.lastSound);
+        else if (thisSound.playState == 0)
+          thisSound.play()
       } else {
         // different sound
         thisSound.togglePause(); // start playing current
