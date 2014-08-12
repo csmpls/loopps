@@ -59,8 +59,8 @@ function ThreeSixtyPlayer() {
 
     playNext: false,   // stop after one sound, or play through list until end
     autoPlay: false,   // start playing the first sound right away
-    allowMultiple: true,  // let many sounds play at once (false = only one sound playing at a time)
-    loadRingColor: '#575758', // how much has loaded
+    allowMultiple: false,  // let many sounds play at once (false = only one sound playing at a time)
+    loadRingColor: '#e7e7e8', // how much has loaded
     playRingColor: '#f7f7f8', // how much has played
     backgroundRingColor: '#fff', // color shown underneath load + play ("not yet loaded" color)
 
@@ -79,7 +79,7 @@ function ThreeSixtyPlayer() {
 
     // optional: spectrum or EQ graph in canvas (not supported in IE <9, too slow via ExCanvas)
     useWaveformData: false,
-    waveformDataColor: 'rgba(12,12,150,0.33)',
+    waveformDataColor: 'rgba(255,12,12,0.33)',
     waveformDataDownsample: 3, // use only one in X (of a set of 256 values) - 1 means all 256
     waveformDataOutside: false,
     waveformDataConstrain: false, // if true, +ve values only - keep within inside circle
@@ -89,11 +89,11 @@ function ThreeSixtyPlayer() {
     useEQData: false,
     eqDataColor: '#eee',
     eqDataDownsample: 4, // use only one in X (of 256 values)
-    eqDataOutside: true,
+    eqDataOutside: false,
     eqDataLineRatio: 0.54,
 
     // enable "amplifier" (canvas pulses like a speaker) effect
-    usePeakData: false,
+    usePeakData: true,
     peakDataColor: '#ff0000',
     peakDataOutside: true,
     peakDataLineRatio: 0.5,
@@ -388,6 +388,20 @@ function ThreeSixtyPlayer() {
     return e.target;
   };
 
+fadeOutSound = function(sound,amount) {
+
+  var s = soundManager.getSoundById(sound.id);
+
+  var vol = s.volume;
+
+  if (vol == 0) { self.stopSound(sound); return; }
+
+  s.setVolume(Math.max(0,vol-amount));
+
+  setTimeout(function(){fadeOutSound(sound,amount)},50);
+
+}
+
   this.handleClick = function(e) {
 
     // a sound link was clicked
@@ -426,16 +440,18 @@ function ThreeSixtyPlayer() {
       // already exists
       if (thisSound === self.lastSound) {
         // and was playing
-        if (thisSound.playState == 1)
-          self.stopSound(self.lastSound);
-        else if (thisSound.playState == 0)
+        if (thisSound.playState == 1) {
+          fadeOutSound(thisSound,2)
+        } else if (thisSound.playState == 0) {
+          soundManager.getSoundById(thisSound.id).setVolume(100)
           thisSound.play()
+        }
       } else {
         // different sound
         thisSound.togglePause(); // start playing current
         sm._writeDebug('sound different than last sound: '+self.lastSound.id);
         if (!self.config.allowMultiple && self.lastSound) {
-          self.stopSound(self.lastSound);
+          self.stopSound(self.lastSound,20);
         }
       }
 
