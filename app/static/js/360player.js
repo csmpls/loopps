@@ -60,8 +60,8 @@ function ThreeSixtyPlayer() {
     playNext: false,   // stop after one sound, or play through list until end
     autoPlay: false,   // start playing the first sound right away
     allowMultiple: false,  // let many sounds play at once (false = only one sound playing at a time)
-    loadRingColor: '#e7e7e8', // how much has loaded
-    playRingColor: '#f7f7f8', // how much has played
+    loadRingColor: '#a7a7a8', // how much has loaded
+    playRingColor: '#c7c7c8', // how much has played
     backgroundRingColor: '#fff', // color shown underneath load + play ("not yet loaded" color)
 
     // optional segment/annotation (metadata) stuff..
@@ -80,7 +80,7 @@ function ThreeSixtyPlayer() {
     // optional: spectrum or EQ graph in canvas (not supported in IE <9, too slow via ExCanvas)
     useWaveformData: false,
     waveformDataColor: 'rgba(255,12,12,0.33)',
-    waveformDataDownsample: 3, // use only one in X (of a set of 256 values) - 1 means all 256
+    waveformDataDownsample: 1, // use only one in X (of a set of 256 values) - 1 means all 256
     waveformDataOutside: false,
     waveformDataConstrain: false, // if true, +ve values only - keep within inside circle
     waveformDataLineRatio: 0.64,
