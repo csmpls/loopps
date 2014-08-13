@@ -7,8 +7,8 @@
 
 .ui360,
 .sm2-360ui {
- min-width:50px; /* should always be at least this. */
- min-height:50px;
+ min-width:100px; /* should always be at least this. */
+ min-height:100px;
 }
 
 .sm2-360ui {
