@@ -27,7 +27,6 @@ function ThreeSixtyPlayer() {
 
   var self = this,
       pl = this,
-      sm = soundManager, // soundManager instance
       uA = navigator.userAgent,
       isIE = (uA.match(/msie/i)),
       isOpera = (uA.match(/opera/i)),
@@ -388,19 +387,6 @@ function ThreeSixtyPlayer() {
     return e.target;
   };
 
-fadeOutSound = function(sound,amount) {
-
-  var s = soundManager.getSoundById(sound.id);
-
-  var vol = s.volume;
-
-  if (vol == 0) { self.stopSound(sound); return; }
-
-  s.setVolume(Math.max(0,vol-amount));
-
-  setTimeout(function(){fadeOutSound(sound,amount)},50);
-
-}
 
   this.handleClick = function(e) {
 
@@ -432,8 +418,8 @@ fadeOutSound = function(sound,amount) {
     }
 
     sm._writeDebug('handleClick()');
-    soundURL = (o.href);
-    thisSound = self.getSoundByURL(soundURL);
+    soundID = (o.id);
+    thisSound = audio.source_loop[soundID]
 
     if (thisSound) {
 
@@ -441,10 +427,12 @@ fadeOutSound = function(sound,amount) {
       if (thisSound === self.lastSound) {
         // and was playing
         if (thisSound.playState == 1) {
-          fadeOutSound(thisSound,2)
+          audio.stop(soundID)
+          //fadeOutSound(thisSound,2)
         } else if (thisSound.playState == 0) {
-          soundManager.getSoundById(thisSound.id).setVolume(100)
-          thisSound.play()
+          audio.play(soundID)
+          //soundManager.getSoundById(thisSound.id).setVolume(100)
+          //thisSound.play()
         }
       } else {
         // different sound
@@ -585,7 +573,7 @@ fadeOutSound = function(sound,amount) {
        return false;
      }
      thisSound._360data.animating = 0;
-     soundManager._writeDebug('fanOut: '+thisSound.id+': '+thisSound._360data.oLink.href);
+     // soundManager._writeDebug('fanOut: '+thisSound.id+': '+thisSound._360data.oLink.href);
      thisSound._360data.oAnim.seekTo(1); // play to end
      window.setTimeout(function() {
        // oncomplete hack
@@ -601,7 +589,7 @@ fadeOutSound = function(sound,amount) {
        return false;
      }
      thisSound._360data.animating = -1;
-     soundManager._writeDebug('fanIn: '+thisSound.id+': '+thisSound._360data.oLink.href);
+     // soundManager._writeDebug('fanIn: '+thisSound.id+': '+thisSound._360data.oLink.href);
      // massive hack
      thisSound._360data.oAnim.seekTo(0); // play to end
      window.setTimeout(function() {
@@ -625,13 +613,10 @@ fadeOutSound = function(sound,amount) {
 
   };
 
-  this.stopSound = function(oSound) {
+  this.stopSound = function(id) {
 
-    soundManager._writeDebug('stopSound: '+oSound.id);
-    soundManager.stop(oSound.id);
-    if (!isTouchDevice) { // iOS 4.2+ security blocks onfinish() -> playNext() if we set a .src in-between(?)
-      soundManager.unload(oSound.id);
-    }
+    // soundManager._writeDebug('stopSound: '+oSound.id);
+    audio.stop(id);
 
   };
 
@@ -1295,7 +1280,7 @@ ThreeSixtyPlayer.prototype.VUMeter = function(oParent) {
 
 ThreeSixtyPlayer.prototype.Metadata = function(oSound, oParent) {
 
-  soundManager._wD('Metadata()');
+  // soundManager._wD('Metadata()');
 
   var me = this,
       oBox = oSound._360data.oUI360,
@@ -1394,30 +1379,30 @@ ThreeSixtyPlayer.prototype.Metadata = function(oSound, oParent) {
 
 if (navigator.userAgent.match(/webkit/i) && navigator.userAgent.match(/mobile/i)) {
   // iPad, iPhone etc.
-  soundManager.setup({
-    useHTML5Audio: true
-  });
+  // soundManager.setup({
+  //   useHTML5Audio: true
+  // });
 }
 
-soundManager.setup({
-  html5PollingInterval: 50, // increased framerate for whileplaying() etc.
-  debugMode: (window.location.href.match(/debug=1/i)), // disable or enable debug output
-  consoleOnly: true,
-  flashVersion: 9,
-  useHighPerformance: true,
-  useFlashBlock: true
-});
+// soundManager.setup({
+//   html5PollingInterval: 50, // increased framerate for whileplaying() etc.
+//   debugMode: (window.location.href.match(/debug=1/i)), // disable or enable debug output
+//   consoleOnly: true,
+//   flashVersion: 9,
+//   useHighPerformance: true,
+//   useFlashBlock: true
+// });
 
 // FPS data, testing/debug only
-if (soundManager.debugMode) {
-  window.setInterval(function() {
-    var p = window.threeSixtyPlayer;
-    if (p && p.lastSound && p.lastSound._360data.fps && typeof window.isHome === 'undefined') {
-      soundManager._writeDebug('fps: ~'+p.lastSound._360data.fps);
-      p.lastSound._360data.fps = 0;
-    }
-  },1000);
-}
+// if (soundManager.debugMode) {
+//   window.setInterval(function() {
+//     var p = window.threeSixtyPlayer;
+//     if (p && p.lastSound && p.lastSound._360data.fps && typeof window.isHome === 'undefined') {
+//       soundManager._writeDebug('fps: ~'+p.lastSound._360data.fps);
+//       p.lastSound._360data.fps = 0;
+//     }
+//   },1000);
+// }
 
 window.ThreeSixtyPlayer = ThreeSixtyPlayer; // constructor
 

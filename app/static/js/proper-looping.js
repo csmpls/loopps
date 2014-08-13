@@ -72,6 +72,9 @@
                 audio.source_once[n][audio.compatibility.stop](0);
             }
         }
+
+        // set its dial to 0
+        $('#' + n).val(0)
     };
  
     //-----------------------------

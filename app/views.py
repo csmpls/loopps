@@ -30,7 +30,14 @@ collections = [
 # views
 @app.route('/')
 def index():
-	return render_template('index.html')
+	all_song_filenames = get_all_filenames_from(collections)
+	print all_song_filenames
+	
+	return render_template(
+		'index.html', 
+		collections=collections, 
+		all_song_filenames=all_song_filenames)
+
 
 @app.route('/looptest')
 def looptest():
