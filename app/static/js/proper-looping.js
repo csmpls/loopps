@@ -74,7 +74,9 @@
         }
 
         // set its dial to 0
-        $('#' + n).val(0)
+        console.log($('#'+n)
+            .val(0)
+            .trigger('change'))
     };
  
     //-----------------------------

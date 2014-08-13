@@ -396,22 +396,35 @@
             return this;
         };
 
+        this._startOrStopAudio = function(e) {
+
+            var id = s.i.attr('id')
+            audio.play(id)
+
+        };
+
         this._listen = function () {
             if (!this.o.readOnly) {
                 this.$c
                     .bind(
                         "mousedown",
-                        function (e) {
-                            e.preventDefault();
-                            s._xy()._mouse(e);
+                        function(e) {
+                            s._startOrStopAudio()
                         }
+                        // function (e) {
+                        //     e.preventDefault();
+                        //     s._xy()._mouse(e);
+                        // }
                     )
                     .bind(
                         "touchstart",
-                        function (e) {
-                            e.preventDefault();
-                            s._xy()._touch(e);
+                        function(e) {
+                            s._startOrStop()
                         }
+                        // function (e) {
+                        //     e.preventDefault();
+                        //     s._xy()._touch(e);
+                        // }
                     );
 
                 this.listen();
