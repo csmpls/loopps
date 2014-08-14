@@ -6,23 +6,34 @@ from app import app
 
 # models
 class Collection:
-	def __init__(self, title, songs):
+	def __init__(self, title, songs, cursorColor, bgColor):
 		self.title = title
 		self.songs = songs
+		self.cursorColor = cursorColor
+		self.bgColor = bgColor
 
 class Song:
 	def __init__(self, title, filename):
 		self.title = title
 		self.filename = filename
+		
 
 
 # data
 collections = [
-	Collection('Though way you float through space & time evaporates just as quickly', [
+	Collection('Though the way you float through space & time evaporates just as quickly', 
+		[
 		Song('there are no paths paths are made by walking', 'there-are-no-paths.mp3'), 
 		Song('champs des possibles', 'champs-des-possibles.mp3'),
 		Song('goal', 'goal.mp3')
-		]
+		],
+		'#7881FF',
+		'#eee'
+	),
+	Collection('charlotte untitled loops',
+		[Song('1','1.wav')],
+		'#ccc',
+		'#333'
 	)
 ]
 

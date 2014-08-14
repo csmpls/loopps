@@ -37,7 +37,7 @@
 
         <form>
         {% for song in collection.songs: %}
-        <button id="{{ collection.songs.index(song)  }}" class="dial" value="0">
+        <button id="{{ all_song_filenames.index(song.filename) }}" data-width = "175" data-fgColor="{{ collection.cursorColor }} " data-bgColor = "{{ collection.bgColor }}" data-cursor="true" class="dial infinite" value="0" data-toggle="tooltip" title="{{ song.title }}">
         {% endfor %}
         </form>
 
@@ -59,6 +59,7 @@
       $(function() {
           $(".dial").knob({
             //readOnly:true,
+            max:1000,
             displayInput:false
           })
       })
@@ -76,12 +77,19 @@
       ],
       proceed: true,
       source_loop: {},
-      source_once: {}
+      source_once: {},
+      timers: {}
     };
 
     </script>
 
+
+
     <script src = "../static/js/proper-looping.js"></script>
+
+    <script>
+      $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
+    </script>
 
 
   </body>

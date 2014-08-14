@@ -419,7 +419,7 @@
                     .bind(
                         "touchstart",
                         function(e) {
-                            s._startOrStop()
+                            s._startOrStopAudio()
                         }
                         // function (e) {
                         //     e.preventDefault();
