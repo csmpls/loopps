@@ -2,21 +2,8 @@ from flask import Flask, redirect, url_for, session, request
 from flask import g, session, request, url_for, flash
 from flask import redirect, render_template, jsonify
 from app import app
+from models import *
 
-
-# models
-class Collection:
-	def __init__(self, title, songs, cursorColor, bgColor):
-		self.title = title
-		self.songs = songs
-		self.cursorColor = cursorColor
-		self.bgColor = bgColor
-
-class Song:
-	def __init__(self, title, filename):
-		self.title = title
-		self.filename = filename
-		
 
 
 # data

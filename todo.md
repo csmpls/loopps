@@ -7,25 +7,29 @@
 .
 .
 
-split views in a nice way
+
+make the view for logins
+for creating new songs / uploading traks
+the forms plugin, use that
 
 
-setup users in flask ... a tutorial, in isolation
+
+
+user model
 	uploads
 	bookmarks
 
+
 models for songs and collections .. how they relate to users ..
+
+
+
 
 
 .
 .
 fade in, fade out
-song names
-
-
-
-
-	
+song names bigger
 line in the center of the playing bit
 
 
