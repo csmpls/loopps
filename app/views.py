@@ -38,6 +38,9 @@ collections = [
 ]
 
 
+
+
+
 # views
 @app.route('/')
 def index():
@@ -48,18 +51,6 @@ def index():
 		'index.html', 
 		collections=collections, 
 		all_song_filenames=all_song_filenames)
-
-
-@app.route('/looptest')
-def looptest():
-	all_song_filenames = get_all_filenames_from(collections)
-	print all_song_filenames
-	
-	return render_template(
-		'looptest.html', 
-		collections=collections, 
-		all_song_filenames=all_song_filenames)
-
 
 
 
