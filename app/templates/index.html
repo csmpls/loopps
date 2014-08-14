@@ -37,7 +37,8 @@
 
         <form>
         {% for song in collection.songs: %}
-        <button id="{{ all_song_filenames.index(song.filename) }}" data-width = "175" data-fgColor="{{ collection.cursorColor }} " data-bgColor = "{{ collection.bgColor }}" data-cursor="true" class="dial infinite" value="0" data-toggle="tooltip" title="{{ song.title }}">
+        <a href="#" rel="tooltip" title = "{{song.title}}"> <button id="{{ all_song_filenames.index(song.filename) }}" data-width = "75" data-height="75" data-fgColor="{{ collection.cursorColor }} " data-bgColor = "{{ collection.bgColor }}" data-cursor="true" class="dial infinite" value="0"></button></a>
+
         {% endfor %}
         </form>
 
@@ -63,9 +64,6 @@
             displayInput:false
           })
       })
-    </script>
-
-    <script>
 
     var audio = {
       buffer: {},
@@ -81,15 +79,12 @@
       timers: {}
     };
 
-    </script>
+    $('[rel="tooltip"]').tooltip({'placement':'bottom'})
 
+    </script>
 
 
     <script src = "../static/js/proper-looping.js"></script>
-
-    <script>
-      $('[data-toggle="tooltip"]').tooltip({'placement': 'top'});
-    </script>
 
 
   </body>

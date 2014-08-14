@@ -146,8 +146,6 @@ if (audio.proceed) {
     for (var a in audio.files) {
         (function() {
             var i = parseInt(a);
-            var button = document.getElementById(i);
-            $(button).hide()
             var req = new XMLHttpRequest();
             req.open('GET', audio.files[i], true); // array starts with 0 hence the -1
             req.responseType = 'arraybuffer';
@@ -162,7 +160,6 @@ if (audio.proceed) {
                             e.preventDefault();
                             audio.play(this.value);
                         });
-                        $(button).show()
 
                     },
                     function() {
