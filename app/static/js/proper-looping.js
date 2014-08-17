@@ -53,7 +53,7 @@ audio.play = function(n) {
             */
 
             // Now queue up our looping sound to start immediatly after the source_once audio plays.
-            // TODO: fade in
+
             audio.source_loop[n][audio.compatibility.start](audio.context.currentTime + (audio.buffer[n].duration));
         } else {
             audio.source_loop[n][audio.compatibility.start](0);
@@ -64,8 +64,8 @@ audio.play = function(n) {
         })
 
         audio.source_loop[n]._playing = true;
-
         audio.toggleButtonCSS(n)
+
     }
 };
 
@@ -85,7 +85,6 @@ audio.stop = function(n) {
     audio.setDialValue(n,0)
 
     audio.toggleButtonCSS(n)
-
 };
 
 
@@ -116,30 +115,19 @@ audio.toggleButtonCSS = function (n) {
         var canvas = $('#'+n)
             .parent()
             .children('canvas')
+        canvas
+            .removeClass('`play')
+            .addClass('pause')
 
-        canvas.hover(function() {
-            canvas.css({"background": "url('static/css/img/blk_pause.png')",
-                    "background-size": "64px",
-                    "background-position": "5px 5px"})
-            },
-            function() {
-                canvas.css({"background": "none"})
-            })
-    }
 
-    else {
+    } else { // otherwise set it back to a play button
+        console.log('making into play button')
         var canvas = $('#'+n)
             .parent()
             .children('canvas')
-
-        canvas.hover(function() {
-            canvas.css({"background": "url('static/css/img/blk_play.png')",
-                    "background-size": "64px",
-                    "background-position": "5px 5px"})
-            },
-            function() {
-                canvas.css({"background": "none"})
-            })
+        canvas
+            .removeClass('pause')
+            .addClass('play')
     }
 }
 

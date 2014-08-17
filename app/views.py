@@ -17,8 +17,8 @@ collections = [
 		'#7881FF',
 		'#eee'
 	),
-	Collection('charlotte untitled loops',
-		[Song('1','1.wav')],
+	Collection('_',
+		[Song('','1.wav')],
 		'#ccc',
 		'#333'
 	)

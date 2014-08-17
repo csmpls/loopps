@@ -11,14 +11,39 @@ body {
 
 }
 
-canvas:hover {
-	background: url('img/blk_play.png');
-	background-size: 64px;
-	background-position: 5px 5px;
+/*canvas {
+	background: url('img/play_default.png');
+	background-size: 50px;
+	background-position: 12px 12px;
 }
 
-.playing:hover {
-	background: url('img/blk_play.png');
-	background-size: 64px;
-	background-position: 5px 5px;
+canvas:hover {
+	background: url('img/play_rollover.png');
+	background-size: 50px;
+	background-position: 12px 12px;
+}*/
+
+.play {
+	background: url('img/play_default.png');
+	background-size: 50px;
+	background-position: 12px 12px;
 }
+
+.play:active {
+	background: url('img/play_pressed.png');
+	background-size: 50px;
+	background-position: 12px 12px;
+}
+
+.pause {
+	background: url('img/pause_default.png');
+	background-size: 50px;
+	background-position: 12px 12px;
+}
+
+.pause:active {
+	background: url('img/pause_pressed.png');
+	background-size: 50px;
+	background-position: 12px 12px;
+}
+
