@@ -64,6 +64,8 @@ audio.play = function(n) {
         })
 
         audio.source_loop[n]._playing = true;
+
+        audio.toggleButtonCSS(n)
     }
 };
 
@@ -81,6 +83,9 @@ audio.stop = function(n) {
 
     // set its dial to 0
     audio.setDialValue(n,0)
+
+    audio.toggleButtonCSS(n)
+
 };
 
 
@@ -101,6 +106,41 @@ audio.setDialValue = function (n, value) {
             .val(value)
             .trigger('change')
 
+}
+
+audio.toggleButtonCSS = function (n) {
+
+    // if it's playing, set it to have a pause button on hover
+    if (audio.source_loop[n]._playing) {
+        // the buttons parent div's 1st child is the canvas
+        var canvas = $('#'+n)
+            .parent()
+            .children('canvas')
+
+        canvas.hover(function() {
+            canvas.css({"background": "url('static/css/img/blk_pause.png')",
+                    "background-size": "64px",
+                    "background-position": "5px 5px"})
+            },
+            function() {
+                canvas.css({"background": "none"})
+            })
+    }
+
+    else {
+        var canvas = $('#'+n)
+            .parent()
+            .children('canvas')
+
+        canvas.hover(function() {
+            canvas.css({"background": "url('static/css/img/blk_play.png')",
+                    "background-size": "64px",
+                    "background-position": "5px 5px"})
+            },
+            function() {
+                canvas.css({"background": "none"})
+            })
+    }
 }
 
 function map_range(value, low1, high1, low2, high2) {

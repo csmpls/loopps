@@ -10,3 +10,15 @@ body {
 	font-size: 11pt;
 
 }
+
+canvas:hover {
+	background: url('img/blk_play.png');
+	background-size: 64px;
+	background-position: 5px 5px;
+}
+
+.playing:hover {
+	background: url('img/blk_play.png');
+	background-size: 64px;
+	background-position: 5px 5px;
+}
