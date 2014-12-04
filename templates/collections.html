@@ -1,0 +1,18 @@
+ {% for collection in collections: %}
+      <div class = "collection">
+
+      <h2> {{collection.title}} </h2>
+
+        <form>
+
+        {% for song in collection.songs: %}
+
+	        <a href="#" rel="tooltip" class="dialover" title = "{{song.title}}"> <button id="{{ all_song_filenames.index(song.filename) }}" data-width = "75" data-height="75" data-fgColor="{{ collection.cursorColor }} " data-bgColor = "{{ collection.bgColor }}" data-cursor="true" class="dial infinite" value="0"></button></a>
+	
+        {% endfor %}
+        </form>
+
+      </div>
+
+{% endfor %}
+
