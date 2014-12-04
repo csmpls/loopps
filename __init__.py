@@ -19,11 +19,11 @@ class Song:
 
 # data
 collections = [
-	Collection('Though the way you float through space & time evaporates just as quickly', 
+	Collection('Though the way you move through space & time evaporates just as quickly', 
 		[
 		Song('there are no paths paths are made by walking', 'there-are-no-paths.mp3'), 
-		Song('champs des possibles', 'champs-des-possibles.mp3'),
-		Song('goal', 'goal.mp3')
+		Song('CHAMPS des possibles', 'champs-des-possibles.mp3')
+#		Song('goal', 'goal.mp3')
 		],
 		'#7881FF',
 		'#eee'
@@ -31,7 +31,7 @@ collections = [
 	Collection('_',
 		[Song('','1.wav')],
 		'#ccc',
-		'#333'
+		'#eee'
 	)
 ]
 
